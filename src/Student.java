@@ -19,7 +19,7 @@ public class Student {
 		this.email = email;
 		this.phone = phone;
 	}
-	
+		
 	public void printInfo() {
 		System.out.println("name:" + name + " id:" + id + " email:" + email + " phone:" + phone);
 	}
