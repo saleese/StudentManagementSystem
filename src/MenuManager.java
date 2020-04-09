@@ -11,7 +11,7 @@ public class MenuManager {
 			System.out.println(" 1. Add Student");
 			System.out.println(" 2. Delete Student");
 			System.out.println(" 3. Edit Student");
-			System.out.println(" 4. View Student");
+			System.out.println(" 4. View Students");
 			System.out.println(" 5. Exit");
 			System.out.println("Select one number between 1 - 6:");
 			num = input.nextInt();
@@ -25,7 +25,7 @@ public class MenuManager {
 				studentManager.editStudent();
 			}
 			else if (num == 4) {
-				studentManager.viewStudent();
+				studentManager.viewStudents();
 			}
 			else {
 				continue;
