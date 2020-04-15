@@ -4,5 +4,5 @@ public enum StudentKind {
 	University,
 	HighSchool,	
 	MiddleSchool,
-	Elementary,
+	ElementarySchool,
 }

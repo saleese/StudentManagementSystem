@@ -3,6 +3,11 @@ package student;
 import java.util.Scanner;
 
 public class HighSchoolStudent extends Student {
+	
+	public HighSchoolStudent(StudentKind kind) {
+		super(kind);
+	}
+	
 
 	public void getUserInput(Scanner input) {
 		System.out.print("Student ID:");

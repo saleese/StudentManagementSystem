@@ -11,6 +11,10 @@ public class Student {
 
 	public Student() {
 	}
+	
+	public Student(StudentKind kind) {
+		this.kind = kind;
+	}
 
 	public Student(String name, int id) {
 		this.name = name;
@@ -18,6 +22,14 @@ public class Student {
 	}
 	
 	public Student(String name, int id, String email, String phone) {
+		this.name = name;
+		this.id = id;
+		this.email = email;
+		this.phone = phone;
+	}
+	
+	public Student(StudentKind kind, String name, int id, String email, String phone) {
+		this.kind = kind;
 		this.name = name;
 		this.id = id;
 		this.email = email;
@@ -63,9 +75,26 @@ public class Student {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-			
+	
+
 	public void printInfo() {
-		System.out.println("name:" + name + " id:" + id + " email:" + email + " phone:" + phone);
+		String skind = "none";
+		switch(this.kind) {
+		case University:
+			skind = "Univ.";
+			break;
+		case HighSchool:
+			skind = "High";
+			break;
+		case MiddleSchool:
+			skind = "Middle";
+			break;
+		case ElementarySchool:
+			skind = "Elementary";
+			break;
+		default:
+		}
+		System.out.println("kind:" + skind + " name:" + name + " id:" + id + " email:" + email + " phone:" + phone);
 	}
 	
 	public void getUserInput(Scanner input) {

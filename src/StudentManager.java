@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import student.ElementarySchoolStudent;
 import student.HighSchoolStudent;
 import student.Student;
+import student.StudentKind;
 
 public class StudentManager {
 	ArrayList<Student> students = new ArrayList<Student>();
@@ -15,18 +17,25 @@ public class StudentManager {
 		int kind = 0;
 		Student student;
 		while (kind != 1 && kind != 2) {
-			System.out.print("1 for University");
-			System.out.print("2 for High School");
-			System.out.print("Select num for Student Kind between 1 and 2:");
+			System.out.println("1 for University");
+			System.out.println("2 for High School");
+			System.out.println("3 for Elementary School");
+			System.out.print("Select num 1, 2, or 3 for Student Kind:");
 			kind = input.nextInt();
 			if (kind == 1) {
-				student = new Student();
+				student = new Student(StudentKind.University);
 				student.getUserInput(input);
 				students.add(student);
 				break;
 			}
 			else if (kind == 2) {
-				student = new HighSchoolStudent();
+				student = new HighSchoolStudent(StudentKind.HighSchool);
+				student.getUserInput(input);
+				students.add(student);
+				break;
+			}
+			else if (kind == 3) {
+				student = new ElementarySchoolStudent(StudentKind.ElementarySchool);
 				student.getUserInput(input);
 				students.add(student);
 				break;
