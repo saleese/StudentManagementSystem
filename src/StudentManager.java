@@ -4,10 +4,12 @@ import java.util.Scanner;
 import student.ElementarySchoolStudent;
 import student.HighSchoolStudent;
 import student.Student;
+import student.StudentInput;
 import student.StudentKind;
+import student.UniversityStudent;
 
 public class StudentManager {
-	ArrayList<Student> students = new ArrayList<Student>();
+	ArrayList<StudentInput> students = new ArrayList<StudentInput>();
 	Scanner input;
 	StudentManager(Scanner input) {
 		this.input = input;
@@ -15,7 +17,7 @@ public class StudentManager {
 	
 	public void addStudent() {
 		int kind = 0;
-		Student student;
+		StudentInput studentInput;
 		while (kind != 1 && kind != 2) {
 			System.out.println("1 for University");
 			System.out.println("2 for High School");
@@ -23,21 +25,21 @@ public class StudentManager {
 			System.out.print("Select num 1, 2, or 3 for Student Kind:");
 			kind = input.nextInt();
 			if (kind == 1) {
-				student = new Student(StudentKind.University);
-				student.getUserInput(input);
-				students.add(student);
+				studentInput = new UniversityStudent(StudentKind.University);
+				studentInput.getUserInput(input);
+				students.add(studentInput);
 				break;
 			}
 			else if (kind == 2) {
-				student = new HighSchoolStudent(StudentKind.HighSchool);
-				student.getUserInput(input);
-				students.add(student);
+				studentInput = new HighSchoolStudent(StudentKind.HighSchool);
+				studentInput.getUserInput(input);
+				students.add(studentInput);
 				break;
 			}
 			else if (kind == 3) {
-				student = new ElementarySchoolStudent(StudentKind.ElementarySchool);
-				student.getUserInput(input);
-				students.add(student);
+				studentInput = new ElementarySchoolStudent(StudentKind.ElementarySchool);
+				studentInput.getUserInput(input);
+				students.add(studentInput);
 				break;
 			}
 			else {
@@ -49,6 +51,11 @@ public class StudentManager {
 	public void deleteStudent() {
 		System.out.print("Student ID:");
 		int studentId = input.nextInt();
+		int index = findIndex(studentId);
+		removefromStudents(index, studentId);
+	}
+	
+	public int findIndex(int studentId) {
 		int index = -1;
 		for (int i = 0; i<students.size(); i++) {
 			if (students.get(i).getId() == studentId) {
@@ -56,14 +63,18 @@ public class StudentManager {
 				break;
 			}			
 		}
-		
+		return index;
+	}
+	
+	public int removefromStudents(int index, int studentId) {
 		if (index >= 0) {
 			students.remove(index);
 			System.out.println("the student " + studentId + "is deleted");	
+			return 1;
 		}
 		else {
 			System.out.println("the student has not been registered");
-			return;
+			return -1;
 		}
 	}
 	
@@ -71,41 +82,28 @@ public class StudentManager {
 		System.out.print("Student ID:");
 		int studentId = input.nextInt();
 		for (int i = 0; i<students.size(); i++) {
-			Student student = students.get(i);
+			StudentInput student = students.get(i);
 			if (student.getId() == studentId) {
 				int num = -1;
 				while (num != 5) {
-					System.out.println("** Student Info Edit Menu **");
-					System.out.println(" 1. Edit Id");
-					System.out.println(" 2. Edit Name");
-					System.out.println(" 3. Edit Email");
-					System.out.println(" 4. View Phone");
-					System.out.println(" 5. Exit");
-					System.out.println("Select one number between 1 - 6:");
+					showEditMenu();
 					num = input.nextInt();
-					if (num == 1) {
-						System.out.print("Student ID:");
-						int id = input.nextInt();
-						student.setId(id);
-					}
-					else if (num == 2) {
-						System.out.print("Student name:");
-						String name = input.next();
-						student.setName(name);
-					}
-					else if (num == 3) {
-						System.out.print("Email address:");
-						String email = input.next();
-						student.setEmail(email);
-					}
-					else if (num == 4) {
-						System.out.print("Phone number:");
-						String phone = input.next();
-						student.setPhone(phone);
-					}
-					else {
+					switch(num) {
+					case 1:
+						student.setStudentID( input);
+						break;
+					case 2:
+						student.setStudentName(input);
+						break;
+					case 3:
+						student.setStudentEmail(input);
+						break;
+					case 4:
+						student.setStudentPhone( input);
+						break;
+					default:
 						continue;
-					} // if
+					}
 				} // while
 				break;
 			} // if
@@ -113,12 +111,22 @@ public class StudentManager {
 	}
 	
 	public void viewStudents() {
-//		System.out.print("Student ID:");
-//		int studentId = input.nextInt();
 		System.out.println("# of registered students:" + students.size());
 		for (int i = 0; i<students.size(); i++) {
 			students.get(i).printInfo();
 		}
+	}
+	
+
+	
+	public void showEditMenu() {
+		System.out.println("** Student Info Edit Menu **");
+		System.out.println(" 1. Edit Id");
+		System.out.println(" 2. Edit Name");
+		System.out.println(" 3. Edit Email");
+		System.out.println(" 4. View Phone");
+		System.out.println(" 5. Exit");
+		System.out.println("Select one number between 1 - 6:");
 	}
 
 }

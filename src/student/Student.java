@@ -2,7 +2,7 @@ package student;
 
 import java.util.Scanner;
 
-public class Student {
+public abstract class Student implements StudentInput {
 	protected StudentKind kind = StudentKind.University;
 	protected String name;
 	protected int id;
@@ -76,8 +76,33 @@ public class Student {
 		this.phone = phone;
 	}
 	
-
-	public void printInfo() {
+	public abstract void printInfo();
+	
+	public void setStudentID(Scanner input) {
+		System.out.print("Student ID:");
+		int id = input.nextInt();
+		this.setId(id);
+	}
+	
+	public void setStudentName(Scanner input) {
+		System.out.print("Student name:");
+		String name = input.next();
+		this.setName(name);
+	}
+	
+	public void setStudentEmail(Scanner input) {
+		System.out.print("Email address:");
+		String email = input.next();
+		this.setEmail(email);
+	}
+	
+	public void setStudentPhone( Scanner input) {
+		System.out.print("Phone number:");
+		String phone = input.next();
+		this.setPhone(phone);
+	}
+	
+	public String getKindString() {
 		String skind = "none";
 		switch(this.kind) {
 		case University:
@@ -94,25 +119,7 @@ public class Student {
 			break;
 		default:
 		}
-		System.out.println("kind:" + skind + " name:" + name + " id:" + id + " email:" + email + " phone:" + phone);
-	}
-	
-	public void getUserInput(Scanner input) {
-		System.out.print("Student ID:");
-		int id = input.nextInt();
-		this.setId(id);
-		
-		System.out.print("Student name:");
-		String name = input.next();
-		this.setName(name);
-		
-		System.out.print("Email address:");
-		String email = input.next();
-		this.setEmail(email);
-		
-		System.out.print("Phone number:");
-		String phone = input.next();
-		this.setPhone(phone);
+		return skind;
 	}
 
 }
