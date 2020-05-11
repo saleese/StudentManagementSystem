@@ -2,6 +2,8 @@ package student;
 
 import java.util.Scanner;
 
+import exception.EmailFormatException;
+
 public interface StudentInput {
 	
 	public int getId();
@@ -10,7 +12,7 @@ public interface StudentInput {
 	
 	public void setName(String name);
 	
-	public void setEmail(String email);
+	public void setEmail(String email) throws EmailFormatException;
 	
 	public void setPhone(String phone);
 

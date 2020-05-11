@@ -2,6 +2,8 @@ package student;
 
 import java.util.Scanner;
 
+import exception.EmailFormatException;
+
 public class ElementarySchoolStudent extends TeenageStudent {
 	
 	protected String parentEmail;
@@ -24,15 +26,20 @@ public class ElementarySchoolStudent extends TeenageStudent {
 		while (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N'){
 			System.out.print("Do you have a parent's email address? (Y/N)");
 			answer = input.next().charAt(0);
-			if (answer == 'y' || answer == 'Y') {
-				setStudentEmail(input);
-				break;
+			try {
+				if (answer == 'y' || answer == 'Y') {
+					setStudentEmail(input);
+					break;
+				}
+				else if (answer == 'n' || answer == 'N') {
+					this.setEmail("");
+					break;
+				}
+				else {
+				}
 			}
-			else if (answer == 'n' || answer == 'N') {
-				this.setEmail("");
-				break;
-			}
-			else {
+			catch(EmailFormatException e) {
+				System.out.println("Incorrect Email Format. put the e-mail address that contains @");
 			}
 		}
 	}
