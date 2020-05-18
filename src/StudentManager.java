@@ -1,17 +1,22 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import student.ElementarySchoolStudent;
 import student.HighSchoolStudent;
-import student.Student;
 import student.StudentInput;
 import student.StudentKind;
 import student.UniversityStudent;
 
-public class StudentManager {
+public class StudentManager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3685095473703752321L;
+	
 	ArrayList<StudentInput> students = new ArrayList<StudentInput>();
-	Scanner input;
+	transient Scanner input;
 	StudentManager(Scanner input) {
 		this.input = input;
 	}
