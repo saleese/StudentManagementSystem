@@ -1,7 +1,10 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import log.EventLogger;
 
 public class MenuManager {
+	static EventLogger logger = new EventLogger("log.txt");
+	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		StudentManager studentManager = new StudentManager(input);
@@ -19,15 +22,19 @@ public class MenuManager {
 				switch(num) {
 				case 1:
 					studentManager.addStudent();
+					logger.log("add a student");
 					break;
 				case 2:
 					studentManager.deleteStudent();
+					logger.log("delete a student");
 					break;
 				case 3:
 					studentManager.editStudent();
+					logger.log("edit a student");
 					break;
 				case 4:
 					studentManager.viewStudents();
+					logger.log("edit a list of student");
 					break;
 				default:
 					continue;
