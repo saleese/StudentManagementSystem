@@ -18,6 +18,9 @@ public class MenuManager {
 		if (studentManager == null) {
 			studentManager = new StudentManager(input);
 		}
+		else {
+			studentManager.setScanner(input);
+		}
 
 		selectMenu(input, studentManager);
 		putObject(studentManager, "studentmanager.ser");

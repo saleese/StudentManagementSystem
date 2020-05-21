@@ -20,6 +20,10 @@ public class StudentManager implements Serializable {
 	StudentManager(Scanner input) {
 		this.input = input;
 	}
+	
+	public void setScanner(Scanner input) {
+		this.input = input;
+	}
 
 	public void addStudent() {
 		int kind = 0;
