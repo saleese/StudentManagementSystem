@@ -1,3 +1,4 @@
+package manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -5,6 +6,7 @@ import java.util.Scanner;
 
 import student.ElementarySchoolStudent;
 import student.HighSchoolStudent;
+import student.Student;
 import student.StudentInput;
 import student.StudentKind;
 import student.UniversityStudent;
@@ -136,8 +138,14 @@ public class StudentManager implements Serializable {
 		}
 	}
 
+	public int size() {
+		return students.size();
+	}
 
-
+	public StudentInput get(int index) {
+		return (Student) students.get(index);
+	}
+	
 	public void showEditMenu() {
 		System.out.println("** Student Info Edit Menu **");
 		System.out.println(" 1. Edit Id");

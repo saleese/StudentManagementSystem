@@ -2,20 +2,26 @@ package gui;
 
 import javax.swing.JFrame;
 
+import manager.StudentManager;
+
 public class WindowFrame extends JFrame {
 
+	StudentManager studentManager;
+	
 	MenuSelection menuSelection;
 	StudentAdder studentadder;
 	StudentViewer studentviewer;
 	
-	public WindowFrame() {
+	public WindowFrame(StudentManager studentManager) {
 		this.setSize(500, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("My Frame");
 		
+		this.studentManager = studentManager;
 		menuSelection = new MenuSelection(this);
 		studentadder = new StudentAdder(this);
-		studentviewer = new StudentViewer(this);
+		studentviewer = new StudentViewer(this, this.studentManager);
+
 		
 		this.add(menuSelection);
 		
