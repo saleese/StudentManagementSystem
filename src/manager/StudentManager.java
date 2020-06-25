@@ -26,6 +26,16 @@ public class StudentManager implements Serializable {
 	public void setScanner(Scanner input) {
 		this.input = input;
 	}
+	
+	public void addStudent(String id, String name, String email, String phone) {
+		StudentInput studentInput = new UniversityStudent(StudentKind.University);
+		studentInput.getUserInput(input);
+		students.add(studentInput);
+	}
+	
+	public void addStudent(StudentInput studentInput) {
+		students.add(studentInput);
+	}
 
 	public void addStudent() {
 		int kind = 0;
